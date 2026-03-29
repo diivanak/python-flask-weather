@@ -14,13 +14,17 @@ The data is processed and rendered dynamically on the webpage.
 This project has been extended beyond the tutorial to explore production-style development and DevOps workflows:
 
 Containerization with Docker: The app is fully containerized for consistent builds and deployments.
+
 Jenkins CI/CD pipeline: Declarative pipeline with four stages:
-Checkout the code
-Build the Docker image
-Run automated tests with pytest
-Deploy to Render (optional, controlled by branch and webhook triggers)
+1. Checkout the code
+2. Build the Docker image
+3. Run automated tests with pytest
+4. Deploy to Render (optional, controlled by branch and webhook triggers)
+
 Automated builds with GitHub webhooks:
+
 Pushing to the docker-jenkins branch triggers Jenkins to automatically build, test, and deploy the application.
+  - During development, ngrok was used to expose the local Jenkins server to GitHub for webhook testing.
 Render deployment: The web app is hosted online via Render, automatically updated after successful pipeline execution.
 
 📚 Project Background
@@ -31,6 +35,6 @@ It has since been transformed into a full DevOps learning project, demonstrating
 
 🚀 Next Steps / Learning Focus
 
-Experiment with multi-branch Jenkins pipelines
-Explore more advanced testing strategies (integration tests, API mocks)
-Scale containerized deployments for multiple environments
+- Experiment with multi-branch Jenkins pipelines
+- Explore more advanced testing strategies (integration tests, API mocks)
+- Scale containerized deployments for multiple environments
