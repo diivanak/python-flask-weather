@@ -23,7 +23,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo "Running tests..."
-                sh 'docker run --rm weather-app pytest -v'
+                sh 'docker run --rm weather-app pytest -v tests.py'
             }
         }
 
