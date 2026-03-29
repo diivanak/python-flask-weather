@@ -12,7 +12,7 @@ The data is processed and rendered dynamically on the webpage.
 The core Flask application was built following a tutorial to establish a baseline understanding of web development and API integration.
 
 This project has since been extended to serve as a platform for experimenting with DevOps workflows, including:
-- CI/CD pipeline development using Jenkins
+- CI/CD declarative pipeline development using Jenkins with 4 stages: checkout, build, test, and deploy with options
 - Automated build and deployment using GitHub webhooks
 - Containerization with Docker
 
