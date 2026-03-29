@@ -9,6 +9,7 @@ pipeline {
         IMAGE_NAME = "weather-app"
         CONTAINER_NAME = "weather-container"
         RENDER_HOOK = credentials('RENDER_DEPLOY_HOOK_URL')
+        API_KEY = credentials('API_KEY')
     }
 
     stages {
@@ -23,7 +24,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo "Running tests..."
-                sh 'docker run --rm weather-app pytest -v tests.py'
+                sh 'docker run --rm -e API_KEY=$API_KEY weather-app pytest -v tests.py'
             }
         }
 
@@ -34,7 +35,7 @@ pipeline {
             steps {
                 echo "Deploying to local environment..."
                 sh 'docker rm -f $CONTAINER_NAME || true'
-                sh 'docker run -d -p 5000:5000 --name $CONTAINER_NAME $IMAGE_NAME'
+                sh 'docker run -d -p 5000:5000 -e API_KEY=$API_KEY --name $CONTAINER_NAME $IMAGE_NAME'
             }
         }
 
