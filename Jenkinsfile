@@ -13,6 +13,20 @@ pipeline {
     }
 
     stages {
+        
+        stage('Checkout') {
+            steps {
+                // Pull code from GitHub branch
+                checkout scmGit(
+                    branches: [[name: '*/docker-jenkins']],
+                    extensions: [],
+                    userRemoteConfigs: [[
+                        credentialsId: 'git_cred',
+                        url: 'https://github.com/diivanak/python-flask-weather.git'
+                    ]]
+                )
+            }
+        }
 
         stage('Build') {
             steps {
