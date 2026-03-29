@@ -3,15 +3,27 @@ from pprint import pprint
 import requests
 import os
 
+DEFAULT_CITY = "La Jolla"
+DEFAULT_LAT = 32.8328
+DEFAULT_LON = -117.2713
+
 load_dotenv()
 
 def get_current_weather(city="La Jolla"):
 
-    lat, lon = 200, 200
+    lat, lon = 200, 200 # Default values to trigger API error if coordinates are invalid
 
-    coord_request_url = f'http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=1&appid={os.getenv("API_KEY")}'
+    api_key = os.getenv("API_KEY")
+    if not api_key:
+        raise ValueError("API_KEY not set in environment")
+    
+    if not city.strip():
+        lat, lon = DEFAULT_LAT, DEFAULT_LON
 
-    json_data = requests.get(coord_request_url).json()
+    coord_request_url = f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=1&appid={api_key}"
+    coord_data = requests.get(coord_request_url).json()
+
+    json_data = coord_data
 
     if json_data:
         lat = json_data[0]["lat"]
