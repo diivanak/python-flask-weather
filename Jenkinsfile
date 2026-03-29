@@ -39,14 +39,14 @@ pipeline {
             }
         }
 
-        stage('Deploy Render') {
-            when {
-                expression { params.DEPLOY_ENV == 'render' }
-            }
-            steps {
-                echo "Deploying to Render..."
-                sh 'curl -X POST $RENDER_HOOK'
-            }
-        }
+        // stage('Deploy Render') {
+        //     when {
+        //         expression { params.DEPLOY_ENV == 'render' }
+        //     }
+        //     steps {
+        //         echo "Deploying to Render..."
+        //         sh 'curl -X POST $RENDER_HOOK'
+        //     }
+        // }
     }
 }
