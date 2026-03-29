@@ -19,15 +19,15 @@ def get_current_weather(city="La Jolla"):
     
     if not city.strip():
         lat, lon = DEFAULT_LAT, DEFAULT_LON
+    else:
+        coord_request_url = f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=1&appid={api_key}"
+        coord_data = requests.get(coord_request_url).json()
 
-    coord_request_url = f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=1&appid={api_key}"
-    coord_data = requests.get(coord_request_url).json()
+        json_data = coord_data
 
-    json_data = coord_data
-
-    if json_data:
-        lat = json_data[0]["lat"]
-        lon = json_data[0]["lon"]
+        if json_data:
+            lat = json_data[0]["lat"]
+            lon = json_data[0]["lon"]
 
     request_url = f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={os.getenv("API_KEY")}&units=imperial'
 
