@@ -24,7 +24,6 @@ pipeline {
             steps {
                 echo "Running tests..."
                 sh 'docker run --rm weather-app pytest -v'
-    }
             }
         }
 
