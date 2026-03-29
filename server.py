@@ -9,6 +9,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+# Handle the /weather route
 @app.route('/weather')
 def get_weather():
     city = request.args.get('city')
