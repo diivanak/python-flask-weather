@@ -29,22 +29,22 @@ pipeline {
         }
 
         stage('Deploy Local') {
-            echo "Deploying to local environment..."
             when {
                 expression { params.DEPLOY_ENV == 'local' }
             }
             steps {
+                echo "Deploying to local environment..."
                 sh 'docker rm -f $CONTAINER_NAME || true'
                 sh 'docker run -d -p 5000:5000 --name $CONTAINER_NAME $IMAGE_NAME'
             }
         }
 
         stage('Deploy Render') {
-            echo "Deploying to Render..."
             when {
                 expression { params.DEPLOY_ENV == 'render' }
             }
             steps {
+                echo "Deploying to Render..."
                 sh 'curl -X POST $RENDER_HOOK'
             }
         }
